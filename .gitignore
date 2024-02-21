@@ -1,3 +1,9 @@
 /pet_agency/.venv
 /pet_agency/.idea
 /pet_agency/pet_agency/__pycache__
+/pet_agency/__pycache__/
+/pet_agency/agency/__pycache__/
+/pet_agency/agency/migrations/__pycache__/
+/pet_agency/user/__pycache__/
+/pet_agency/user/migrations/__pycache__/
+
