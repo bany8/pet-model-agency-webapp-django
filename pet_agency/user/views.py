@@ -7,3 +7,7 @@ def login(request):
 
 def register(request):
     return render(request, "user/register.html")
+
+
+def posts(request):
+    return render(request, "user/posts.html")
