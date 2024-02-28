@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Advertisement
 
 
 def home(request):
@@ -6,4 +7,5 @@ def home(request):
 
 
 def gallery(request):
-    return render(request, "agency/gallery.html")
+    context = {"advertisements": Advertisement.objects.all()}
+    return render(request, "agency/gallery.html", context)
