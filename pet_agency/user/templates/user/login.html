@@ -4,33 +4,23 @@
     Login
 {% endblock title %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-    <div class="">
     <form method="POST" action="">
-
+        {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4 mt-4">Login!</legend>
+            <legend class="border-bottom mb-4 mt-4">Login !</legend>
 
-            <div class="form-group">
-                <i class="bi bi-person fs-5"></i>
-                <label class="form-control-label mt-3 ms-3">Usename</label>
-                <input class="form-control form-control-lg" type="username" name="user_name" id="user_name" required/>
-            </div>
-
-            <div class="form-group">
-                <i class="bi bi-key fs-5"></i>
-                <label class="form-control-label mt-3 ms-3">Password</label>
-                <input class="form-control form-control-lg" type="password" name="password" id="password" required/>
-            </div>
+            {{ form|crispy }}
 
         </fieldset>
 
         <div class="form-group">
-            <button class="btn btn-outline-info mt-3">Log in</button>
+            <button class="btn btn-outline-info mt-3">Login</button>
         </div>
 
     </form>
-</div>
 
 <div class="borde-top pt-3">
     <small class="text-muted">

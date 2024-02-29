@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import logout as logout_user
 from .forms import UserRegisterForm
 
 
 def login(request):
+    if request.method == "POST":
+        pass
     return render(request, "user/login.html")
+
+
+def logout(request):
+    logout_user(request)
+    return redirect('user:login_page')
 
 
 def register(request):
@@ -14,7 +22,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return redirect('agency:home_page')
+            return redirect('user:login_page')
     else:
         form = UserRegisterForm()
     return render(request, "user/register.html", {'form': form})

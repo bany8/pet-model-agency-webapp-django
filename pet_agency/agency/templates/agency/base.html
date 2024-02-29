@@ -40,21 +40,27 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="main-nav">
           <ul class="navbar-nav justyfy-content-end">
 
-            <li class="nav-item"></li>
-              <a class="nav-link" href="{% url 'user:posts_page' %}"><i class="bi bi-file-person fs-4 me-2"></i>My Posts</a>
-            </li>
-            <li class="nav-item">
-              <form action="/logout" method="GET">
-                <a class="nav-link" href="#"><i class="bi bi-box-arrow-right me-2 fs-4"></i>Logout</a>
-              </form>
-            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:posts_page' %}"><i class="bi bi-file-person fs-4 me-2"></i>My Posts</a>
+              </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:login_page' %}"><i class="bi bi-box-arrow-in-left me-2 fs-4"></i>Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:register_page' %}"><i class="bi bi-card-checklist me-2 fs-4"></i>Register</a>
-            </li>
+              <li class="nav-item">
+                <form action="/user/logout/" method="POST">
+                  {% csrf_token %}
+                  <button class="submitted" type="submit">
+                    <a class="nav-link" ><i class="bi bi-box-arrow-right me-2 fs-4"></i>Logout</a>
+                  </button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:login_page' %}"><i class="bi bi-box-arrow-in-left me-2 fs-4"></i>Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:register_page' %}"><i class="bi bi-card-checklist me-2 fs-4"></i>Register</a>
+              </li>
+            {% endif %}
 
           </ul>
         </div>

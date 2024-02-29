@@ -1,0 +1,14 @@
+{% extends "agency/base.html" %}
+
+{% block title %}
+    Logout
+{% endblock title %}
+
+{% block content %}
+    <h2>You have been logged out!</h2>
+    <div class="borde-top pt-3">
+        <small class="text-muted">
+            Login again <a class="ml-2" href="{% url 'user:login_page' %}">Log in</a>
+        </small>
+    </div>
+{% endblock content %}
