@@ -42,7 +42,10 @@
 
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'user:posts_page' %}"><i class="bi bi-file-person fs-4 me-2"></i>My Posts</a>
+                <a class="nav-link" href="{% url 'user:profile_page' %}"><i class="bi bi-file-person fs-4 me-2"></i>My Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:posts_page' %}"><i class="bi bi-postcard fs-4 me-2"></i>My Posts</a>
               </li>
 
               <li class="nav-item">
