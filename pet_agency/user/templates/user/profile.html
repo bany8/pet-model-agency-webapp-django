@@ -8,8 +8,24 @@
 
 {% block content %}
 
-    <img src="{{ user.profile.image.url }}" class="img-thumbnail" alt="mugshot">
+    <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="mugshot">
     <h1>{{ user.username }}</h1>
     <h2>{{ user.email }}</h2>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 mt-4">Profile info</legend>
+
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+
+        </fieldset>
+
+        <div class="form-group">
+            <button class="btn btn-outline-info mt-3">Update</button>
+        </div>
+
+    </form>
 
 {% endblock content %}
