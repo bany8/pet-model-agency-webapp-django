@@ -6,4 +6,30 @@
 
 {% block content %}
     <h1>Posts page</h1>
+    <a href="{% url 'agency:adv_create_page' %}" class="btn btn-outline-info mt-3 mb-3">Create new advetrisement</advert></adv></a>
+
+    {% for adv in advertisements %}
+    {% if adv.owner == user %}
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'agency:adv_page' adv.id %}">Name: {{ adv.name }}</a></h5>
+                <p class="card-text">Age: {{  adv.age }} years</p>
+                <p class="card-text">Breed: {{ adv.breed }}</p>
+                <p class="card-text">Owner: {{ adv.owner }}</p>
+                <p class="card-text"><small class="text-body-secondary">Adv date: {{ adv.date_posted|date:"d F Y" }}</small></p>
+
+                <a href="{% url 'agency:adv_update_page' adv.id %}" class="btn btn-outline-info mt-3">Update</a>
+                <a href="{% url 'agency:adv_delete_page' adv.id %}" class="btn btn-outline-danger mt-3">Delete</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endif %}
+    {% endfor %}
 {% endblock content %}

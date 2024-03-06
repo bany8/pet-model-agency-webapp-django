@@ -4,6 +4,7 @@ from django.contrib.auth import logout as logout_user
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from agency.models import Advertisement
 
 
 def logout(request):
@@ -26,7 +27,8 @@ def register(request):
 
 @login_required
 def posts(request):
-    return render(request, "user/posts.html")
+    context = Advertisement.objects.all()
+    return render(request, "user/posts.html", context={'advertisements': context})
 
 
 @login_required

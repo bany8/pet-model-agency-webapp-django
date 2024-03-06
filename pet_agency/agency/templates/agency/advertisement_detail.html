@@ -1,0 +1,24 @@
+{% extends "agency/base.html" %}
+
+{% block title %}
+    Gallery
+{% endblock title %}
+
+{% block content %}
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="..." class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{ object.name }}</h5>
+            <p class="card-text">Age: {{ object.age }} years</p>
+            <p class="card-text">Breed: {{ object.breed }}</p>
+            <p class="card-text">Owner: {{ object.owner }}</p>
+            <p class="card-text"><small class="text-body-secondary">Adv date: {{ object.date_posted|date:"d F Y" }}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
