@@ -18,7 +18,8 @@ class AdvertismentListView(ListView):
     model = Advertisement
     template_name = 'agency/gallery.html'
     context_object_name = 'advertisements'
-    ordering = ['date_posted']
+    ordering = ['-date_posted']
+    paginate_by = 2
 
 
 class AdvertismentDetailView(DetailView):
