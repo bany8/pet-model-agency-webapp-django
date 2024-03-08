@@ -14,7 +14,7 @@ def home(request):
     return render(request, "agency/home.html")
 
 
-class AdvertismentListView(ListView):
+class AdvertisementListView(ListView):
     model = Advertisement
     template_name = 'agency/gallery.html'
     context_object_name = 'advertisements'
@@ -22,11 +22,11 @@ class AdvertismentListView(ListView):
     paginate_by = 2
 
 
-class AdvertismentDetailView(DetailView):
+class AdvertisementDetailView(DetailView):
     model = Advertisement
 
 
-class AdvertismentCreateView(LoginRequiredMixin, CreateView):
+class AdvertisementCreateView(LoginRequiredMixin, CreateView):
     model = Advertisement
     fields = ['name', 'age', 'breed', 'description']
 
@@ -35,7 +35,7 @@ class AdvertismentCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class AdvertismentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class AdvertisementUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Advertisement
     fields = ['name', 'age', 'breed', 'description']
 
@@ -46,7 +46,7 @@ class AdvertismentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
         return False
 
 
-class AdvertismentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class AdvertisementDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Advertisement
     success_url = '/gallery'
 

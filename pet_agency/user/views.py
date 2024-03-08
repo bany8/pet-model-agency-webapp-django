@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import logout as logout_user
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from agency.models import Advertisement
@@ -25,10 +27,15 @@ def register(request):
     return render(request, "user/register.html", {'form': form})
 
 
-@login_required
-def posts(request):
-    context = Advertisement.objects.all()
-    return render(request, "user/posts.html", context={'advertisements': context})
+class UserAdvertisementListView(ListView):
+    model = Advertisement
+    template_name = 'user/posts.html'
+    context_object_name = 'advertisements'
+    paginate_by = 2
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Advertisement.objects.filter(owner=user).order_by('-date_posted')
 
 
 @login_required
