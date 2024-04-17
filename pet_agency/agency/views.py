@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
+    View,
     ListView,
     DetailView,
     CreateView,
@@ -10,13 +11,14 @@ from django.views.generic import (
 from .models import Advertisement
 
 
-def home(request):
-    return render(request, "agency/home.html")
+class HomePage(View):
+
+    def get(self, request):
+        return render(request, 'agency/home.html')
 
 
 class AdvertismentListView(ListView):
     model = Advertisement
-    template_name = 'agency/gallery.html'
     context_object_name = 'advertisements'
     ordering = ['date_posted']
 
