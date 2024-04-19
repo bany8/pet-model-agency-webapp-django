@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "agency.apps.AgencyConfig",
     "crispy_forms",
     "crispy_bootstrap4",
+    "phonenumber_field",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
