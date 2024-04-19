@@ -51,10 +51,10 @@ class ProfileView(LoginRequiredMixin, View):
             username = u_form.cleaned_data.get('username')
             messages.success(request, f'Account {username} updated!')
             return redirect('user:profile_page')
-        else:
-            context = {
-                'u_form': u_form,
-                'p_form': p_form
-            }
 
-            return render(request, "user/profile.html", context)
+        context = {
+            'u_form': u_form,
+            'p_form': p_form
+        }
+
+        return render(request, "user/profile.html", context)
