@@ -3,8 +3,6 @@ from django.urls import path
 
 from .views import RegisterView, PostsView, ProfileView
 
-from . import views
-
 app_name = "user"
 urlpatterns = [
     path("register/", RegisterView.as_view(), name="register_page"),

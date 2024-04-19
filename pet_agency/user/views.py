@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from agency.models import Advertisement
-from .models import Profile
 
 
 class RegisterView(View):
