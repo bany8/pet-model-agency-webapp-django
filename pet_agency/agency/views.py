@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.urls import reverse
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     View,
@@ -28,9 +30,13 @@ class AdvertismentDetailView(DetailView):
     model = Advertisement
 
 
-class AdvertismentCreateView(LoginRequiredMixin, CreateView):
+class AdvertismentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Advertisement
-    fields = ['name', 'age', 'breed', 'description']
+    fields = ['name', 'age', 'breed', 'description', 'adv_pic']
+    success_message = "Advertisement created successfully, now you can edit photo gallery on the bottom !"
+
+    def get_success_url(self):
+        return reverse('agency:adv_update_page', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.owner_id = self.request.user.id
@@ -39,7 +45,9 @@ class AdvertismentCreateView(LoginRequiredMixin, CreateView):
 
 class AdvertismentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Advertisement
-    fields = ['name', 'age', 'breed', 'description']
+    fields = ['name', 'age', 'breed', 'description', 'adv_pic']
+
+
 
     def test_func(self):
         adv = self.get_object()
@@ -50,7 +58,7 @@ class AdvertismentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
 
 class AdvertismentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Advertisement
-    success_url = '/gallery'
+    success_url = '/user/posts'
 
     def test_func(self):
         adv = self.get_object()
