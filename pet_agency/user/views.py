@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
+from django.views.generic import ListView, View
 
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from agency.models import Advertisement
@@ -22,10 +22,13 @@ class RegisterView(View):
         return render(request, "user/register.html", {'form': form})
 
 
-class PostsView(View):
-    def get(self, request):
-        context = Advertisement.objects.all()
-        return render(request, "user/posts.html", context={'advertisements': context})
+class PostsListView(ListView, LoginRequiredMixin):
+    model = Advertisement
+    context_object_name = 'advertisements'
+    paginate_by = 4
+
+    def get_queryset(self):
+        return Advertisement.objects.filter(owner=self.request.user).order_by('-date_posted')
 
 
 class ProfileView(LoginRequiredMixin, View):

@@ -20,7 +20,8 @@ class HomePage(View):
 class AdvertismentListView(ListView):
     model = Advertisement
     context_object_name = 'advertisements'
-    ordering = ['date_posted']
+    ordering = ['-date_posted']
+    paginate_by = 4
 
 
 class AdvertismentDetailView(DetailView):
