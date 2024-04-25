@@ -17,6 +17,11 @@
             <p class="card-text">Breed: {{ object.breed }}</p>
             <p class="card-text">Owner: {{ object.owner }}</p>
             <p class="card-text"><small class="text-body-secondary">Adv date: {{ object.date_posted|date:"d F Y" }}</small></p>
+
+            {% if request.user == object.owner %}
+              <a href="{% url 'agency:adv_update_page' object.id %}" class="btn btn-primary">Update</a>
+              <a href="{% url 'agency:adv_delete_page' object.id %}" class="btn btn-danger">Delete</a>
+            {% endif %}
           </div>
         </div>
       </div>
