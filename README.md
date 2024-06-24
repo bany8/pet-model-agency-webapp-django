@@ -1,2 +1,2 @@
-# Pet Model Agency Webapp Django
+# Pet Model Agency App
 ### In Construction... visit dev branch
